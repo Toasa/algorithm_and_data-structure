@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+static int A[8];
+
+void printArr(int A[8]) {
+  for (int i = 0; i < 8; i++) {
+	printf("%d ", A[i]);
+  }
+  printf("\n");
+}
+
+int Partition(int A[8], int start, int end) {
+  int pivot = A[end];
+  int pIndex = start;
+  for (int i = 0; i < end; i++) {
+	if (A[i] <= pivot) {
+	  // swap
+	  int tmp = A[i];
+	  A[i] = A[pIndex];
+	  A[pIndex] = tmp;
+
+	  pIndex++;
+	}
+  }
+  
+  printArr(A);
+  printf("pIndex: %d\n", pIndex);
+
+  return pIndex;
+}
+
+void QuickSort(int A[8], int start, int end) {
+  if (start < end) {
+	int pIndex = Partition(A, start, end);
+
+	// printf("start: %d pIndex: %d end: %d\n", start, pIndex, end);
+
+	QuickSort(A, start, pIndex - 1);
+	QuickSort(A, pIndex + 1, end);
+  } else {
+
+	// printf("quit\n");
+
+	return;
+  }
+}
+
+int main() {
+  int arr[8] = {2, 3, 8, 1, 5, 4, 7, 6};
+  memcpy(A, arr, sizeof(int)*8);
+  QuickSort(A, 0, 7);
+
+  // print sorted array
+  printArr(A);
+}
