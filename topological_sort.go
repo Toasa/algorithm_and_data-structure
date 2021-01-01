@@ -47,16 +47,7 @@ func (n *Node) removeParent(p *Node) {
     }
 }
 
-// L ← トポロジカルソートした結果を蓄積する空リスト
-// S ← 入力辺を持たないすべてのノードの集合
-// 
-// while S が空ではない do
-//     S からノード n を削除する
-//     L に n を追加する
-//     for each n の出力辺 e とその先のノード m do
-//         辺 e をグラフから削除する
-//         if m がその他の入力辺を持っていなければ then
-//             m を S に追加する
+// [参考資料](https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%9D%E3%83%AD%E3%82%B8%E3%82%AB%E3%83%AB%E3%82%BD%E3%83%BC%E3%83%88)
 func top_sort(nodes []*Node) {
     res := []*Node{}
 
